@@ -17,8 +17,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import {CalendarModule} from 'primeng/calendar';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {DropdownModule} from 'primeng/dropdown';
+import {InputMaskModule} from 'primeng/inputmask';
 
-
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { PessoasCadastroComponent } from './pessoas-cadastro/pessoas-cadastro.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import {DropdownModule} from 'primeng/dropdown';
     LancamentosPesquisaComponent,
     NavbarComponent,
     PessoasPesquisaComponent,
-    LancamentosCadastroComponent
+    LancamentosCadastroComponent,
+    PessoasCadastroComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,9 @@ import {DropdownModule} from 'primeng/dropdown';
     CalendarModule,
     BrowserAnimationsModule,
     SelectButtonModule,
-    DropdownModule
+    DropdownModule,
+    CurrencyMaskModule,
+    InputMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]
