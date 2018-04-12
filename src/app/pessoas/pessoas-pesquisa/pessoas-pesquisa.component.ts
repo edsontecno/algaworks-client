@@ -1,3 +1,4 @@
+import { PessoaFiltro, PessoasService } from './../pessoas.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,18 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PessoasPesquisaComponent {
 
-    pessoas = [
-        { nome: 'Manoel', cidade: 'Uberlândia', estado: 'MG', status: true},
-        { nome: 'Sebastian', cidade: 'São Paulo', estado: 'SP', status: false},
-        { nome: 'Carla', cidade: 'Florianópolis', estado: 'SC', status: true},
-        { nome: 'Luíz', cidade: 'Curitiba', estado: 'PR', status: true},
-        { nome: 'Vilmar', cidade: 'Rio de Janeiro', estado: 'RJ', status: false},
-        { nome: 'Manoel', cidade: 'Uberlândia', estado: 'MG', status: true},
-        { nome: 'Sebastian', cidade: 'São Paulo', estado: 'SP', status: false},
-        { nome: 'Carla', cidade: 'Florianópolis', estado: 'SC', status: true},
-        { nome: 'Luíz', cidade: 'Curitiba', estado: 'PR', status: true},
-        { nome: 'Vilmar', cidade: 'Rio de Janeiro', estado: 'RJ', status: false}
+    pessoas = [];
+    filtro = new PessoaFiltro();
+    totalRegistro = 0;
 
-      ];
+    constructor(private service: PessoasService) {}
+
+    pesquisar(pagina = 0) {
+
+        this.filtro.pagina = pagina;
+
+        this.service.pesquisar(this.filtro)
+        .then(result => {
+            this.pessoas = result.pessoas;
+            this.totalRegistro = result.total;
+        });
+    }
 
 }

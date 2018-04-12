@@ -1,4 +1,13 @@
-<p-dataTable [value]="lancamentos" [paginator]="true" [rows]="10" [responsive]="true" emptyMessage="Nenhum registro encontrado">
+<p-dataTable [value]="lancamentos"
+
+             [paginator]="true"
+             [rows]="filtro.itensPorPagina"
+             [lazy]="true"
+             [totalRecords]="totalRegistro"
+             (onLazyLoad)="aoMudarPagina($event)"
+             [responsive]="true"
+             emptyMessage="Nenhum registro encontrado"
+             #tabela>
     <p-column field="pessoa" header="Pessoa"></p-column>
     <p-column field="descricao" header="Descrição"></p-column>
     <p-column field="dataVencimento" header="Vencimento" styleClass="col-data">
@@ -19,9 +28,9 @@
     </p-column>
 
     <p-column styleClass="col-acoes">
-        <ng-template pTemplate="body">
+        <ng-template pTemplate="body" let-lanc="rowData">
             <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-            <a pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"></a>
+            <a pButton (click)="excluir(lanc)" icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"></a>
         </ng-template>
     </p-column>
 </p-dataTable>

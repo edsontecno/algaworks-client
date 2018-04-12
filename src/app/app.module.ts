@@ -1,3 +1,6 @@
+import { PessoasService } from './pessoas/pessoas.service';
+import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
+import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoService } from './lancamentos/lancamento.service';
 import { AppComponent } from './app.component';
 
@@ -22,7 +25,7 @@ import { HttpModule } from '@angular/http';
     CoreModule,
     HttpModule
   ],
-  providers: [LancamentoService],
+  providers: [LancamentoService, LancamentosPesquisaComponent, PessoasService, PessoasPesquisaComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
