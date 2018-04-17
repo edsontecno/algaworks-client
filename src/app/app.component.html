@@ -1,2 +1,8 @@
 <app-navbar></app-navbar>
 <app-lancamentos-pesquisa></app-lancamentos-pesquisa>
+<p-confirmDialog header="Confirmar" icon="fa fa-question-circle" #confirmacao>
+    <p-footer>
+        <button type="button" pButton icon="fa-check" label="Sim" (click)="confirmacao.accept()"></button>
+        <button type="button" pButton icon="fa-times" label="Não" (click)="confirmacao.reject()"></button>
+    </p-footer>
+</p-confirmDialog>
