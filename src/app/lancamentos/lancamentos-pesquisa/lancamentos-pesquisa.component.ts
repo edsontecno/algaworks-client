@@ -1,3 +1,4 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
@@ -12,7 +13,7 @@ export class LancamentosPesquisaComponent implements OnInit  {
     filtro = new LancamentoFiltro();
     totalRegistro = 0;
 
-    constructor(private service: LancamentoService) {
+    constructor(private service: LancamentoService, private errorHandle: ErrorHandlerService) {
 
     }
 
@@ -28,7 +29,8 @@ export class LancamentosPesquisaComponent implements OnInit  {
         .then(result => {
             this.lancamentos = result.lancamentos;
             this.totalRegistro = result.total;
-        });
+        })
+        .catch(error => this.errorHandle.handle(error));
     }
 
 }

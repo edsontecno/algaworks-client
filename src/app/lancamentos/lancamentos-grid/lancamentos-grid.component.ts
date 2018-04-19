@@ -1,3 +1,4 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { LancamentosPesquisaComponent } from './../lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoFiltro, LancamentoService } from './../lancamento.service';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
@@ -19,7 +20,8 @@ export class LancamentosGridComponent {
     constructor(private pesquisaComponent: LancamentosPesquisaComponent,
         private service: LancamentoService,
         private toasty: ToastyService,
-        private confirmation: ConfirmationService) {
+        private confirmation: ConfirmationService,
+        private errorHandle: ErrorHandlerService) {
 
 
     }
@@ -61,6 +63,7 @@ export class LancamentosGridComponent {
             }
             this.toasty.success('Lançamento excluído com sucesso!');
 
-        });
+        })
+        .catch(error => this.errorHandle.handle(error));
     }
 }
