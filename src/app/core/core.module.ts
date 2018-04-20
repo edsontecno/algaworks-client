@@ -1,3 +1,4 @@
+import { CategoriaService } from './../categorias/categoria.service';
 import { PessoasPesquisaComponent } from './../pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
 import { PessoasService } from './../pessoas/pessoas.service';
 import { LancamentosPesquisaComponent } from './../lancamentos/lancamentos-pesquisa/lancamentos-pesquisa.component';
@@ -41,7 +42,8 @@ registerLocaleData(localePt, 'pt-BR');
     PessoasPesquisaComponent,
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     ConfirmationService,
-    ErrorHandlerService
+    ErrorHandlerService,
+    CategoriaService
   ]
 })
 export class CoreModule { }
