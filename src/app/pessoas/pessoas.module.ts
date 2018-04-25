@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 import { InputMaskModule } from 'primeng/inputmask';
@@ -35,7 +36,8 @@ import { SharedModule } from '../shared/shared.module';
     DropdownModule,
     CurrencyMaskModule,
     InputMaskModule,
-    SharedModule
+    SharedModule,
+    RouterModule
  ],
   declarations: [
         PessoasGridComponent,

@@ -18,6 +18,7 @@ import { ErrorHandlerService } from './error-handler.service';
 // Adicione o registerLocaleData e o localePt
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 // E por fim, registre o localePt como 'pt-BR'
 registerLocaleData(localePt, 'pt-BR');
@@ -26,7 +27,8 @@ registerLocaleData(localePt, 'pt-BR');
   imports: [
     CommonModule,
     ToastyModule.forRoot(),
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    RouterModule
   ],
   declarations: [
       NavbarComponent
