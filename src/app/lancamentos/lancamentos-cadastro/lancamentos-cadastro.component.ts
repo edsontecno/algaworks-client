@@ -1,3 +1,5 @@
+import { ToastyService } from 'ng2-toasty';
+import { LancamentoService } from './../lancamento.service';
 import { Lancamento } from './../../core/model';
 import { PessoasService } from './../../pessoas/pessoas.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
@@ -22,7 +24,10 @@ export class LancamentosCadastroComponent implements OnInit {
 
   constructor( private categoriaService: CategoriaService,
     private errorHandler: ErrorHandlerService,
-    private pessoaService: PessoasService) { }
+    private pessoaService: PessoasService,
+    private toasty: ToastyService,
+    private lancamentoService: LancamentoService
+    ) { }
 
   ngOnInit() {
     this.carregarCategorias();
@@ -40,14 +45,20 @@ export class LancamentosCadastroComponent implements OnInit {
   carregarPessoas() {
     this.pessoaService.listarTodas()
       .then(pessoas => {
-          console.log(pessoas);
         this.pessoas = pessoas.map(p => ({ label: p.nome, value: p.codigo }));
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
 
   salvar(form: FormControl) {
-    console.log(this.lancamento);
+    this.lancamentoService.adicionar(this.lancamento)
+    .then(() => {
+        this.toasty.success('Lançamento adicionado com sucesso!');
+
+        form.reset();
+        this.lancamento = new Lancamento();
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
 }

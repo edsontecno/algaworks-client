@@ -1,3 +1,4 @@
+import { Lancamento } from './../core/model';
 import { Injectable } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
@@ -64,6 +65,17 @@ export class LancamentoService {
     return this.http.delete(`${this.lancamentoUrl}/${codigo}`, { headers })
         .toPromise()
         .then(() => null);
+  }
+
+  adicionar(lancamento: Lancamento): Promise<Lancamento> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post(this.lancamentoUrl,
+        JSON.stringify(lancamento), { headers })
+      .toPromise()
+      .then(response => response.json());
   }
 
 }
