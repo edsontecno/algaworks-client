@@ -6,6 +6,7 @@ import { ErrorHandlerService } from './../../core/error-handler.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-lancamentos-cadastro',
@@ -22,14 +23,23 @@ export class LancamentosCadastroComponent implements OnInit {
     pessoas = [];
     lancamento = new Lancamento();
 
+
   constructor( private categoriaService: CategoriaService,
     private errorHandler: ErrorHandlerService,
     private pessoaService: PessoasService,
     private toasty: ToastyService,
-    private lancamentoService: LancamentoService
+    private lancamentoService: LancamentoService,
+    private route: ActivatedRoute,
+    private rotiador: Router
     ) { }
 
   ngOnInit() {
+    const codigo = this.route.snapshot.params['codigo'];
+
+    if (codigo) {
+      this.carregarLancamento(codigo);
+    }
+
     this.carregarCategorias();
     this.carregarPessoas();
   }
@@ -50,15 +60,51 @@ export class LancamentosCadastroComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-  salvar(form: FormControl) {
+  adicionarLancamento(form: FormControl) {
     this.lancamentoService.adicionar(this.lancamento)
-    .then(() => {
+    .then(lancamentoAdicionado => {
         this.toasty.success('Lançamento adicionado com sucesso!');
 
-        form.reset();
-        this.lancamento = new Lancamento();
+        this.rotiador.navigate(['/lancamentos', lancamentoAdicionado.codigo]);
+
       })
       .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  atualizarLancamento(form: FormControl) {
+    this.lancamentoService.atualizar(this.lancamento)
+    .then(lancamento => {
+      this.lancamento = lancamento;
+
+      this.toasty.success('Lançamento alterado com sucesso!');
+    })
+    .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  salvar(form: FormControl) {
+    if (this.lancamento.codigo != null) {
+      this.atualizarLancamento(form);
+    } else {
+      this.adicionarLancamento(form);
+    }
+  }
+
+  carregarLancamento(codigo: number) {
+    this.lancamentoService.buscarPorCodigo(codigo)
+      .then(lancamento => {
+        this.lancamento = lancamento;
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  novo(form: FormControl) {
+    form.reset();
+
+    setTimeout(function() {
+      this.lancamento = new Lancamento();
+    }.bind(this), 1);
+
+    this.rotiador.navigate(['/lancamentos/novo']);
   }
 
 }

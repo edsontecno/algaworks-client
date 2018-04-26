@@ -29,7 +29,7 @@
 
     <p-column styleClass="col-acoes">
         <ng-template pTemplate="body" let-lanc="rowData">
-            <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+            <a pButton [routerLink]="['/lancamentos', lanc.codigo]" icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
             <a pButton (click)="confirmarExclusao(lanc)" icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"></a>
         </ng-template>
     </p-column>

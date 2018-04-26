@@ -1,6 +1,6 @@
+import { Pessoa } from './../core/model';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { Pessoa } from '../core/model';
 
 export class PessoaFiltro {
     nome: string;
@@ -34,9 +34,9 @@ export class PessoasService {
         .then(response =>  {
             const resultado = {
                 pessoas: response.json().content,
+
                 total: response.json().totalElements
             };
-
             return resultado;
         } )
         ;
@@ -78,6 +78,34 @@ export class PessoasService {
         return this.http.post(this.serviceUrl, JSON.stringify(pessoa), { headers })
           .toPromise()
           .then(response => response.json());
+      }
+
+      atualizar(pessoa: Pessoa): Promise<Pessoa> {
+        const headers = new Headers();
+        headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+        headers.append('Content-Type', 'application/json');
+
+        return this.http.put(`${this.serviceUrl}/${pessoa.codigo}`,
+            JSON.stringify(pessoa), { headers })
+          .toPromise()
+          .then(response => {
+            const alterado = response.json() as Pessoa;
+
+            return alterado;
+          });
+      }
+
+      buscarPorCodigo(codigo: number): Promise<Pessoa> {
+        const headers = new Headers();
+        headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+        return this.http.get(`${this.serviceUrl}/${codigo}`, { headers })
+          .toPromise()
+          .then(response => {
+            const pessoa = response.json() as Pessoa;
+
+            return pessoa;
+          });
       }
 
 }
