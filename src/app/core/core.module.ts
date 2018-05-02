@@ -19,6 +19,8 @@ import { ErrorHandlerService } from './error-handler.service';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { Title } from '@angular/platform-browser';
 
 // E por fim, registre o localePt como 'pt-BR'
 registerLocaleData(localePt, 'pt-BR');
@@ -31,7 +33,8 @@ registerLocaleData(localePt, 'pt-BR');
     RouterModule
   ],
   declarations: [
-      NavbarComponent
+      NavbarComponent,
+      PaginaNaoEncontradaComponent
   ],
   exports: [
       NavbarComponent,
@@ -45,7 +48,8 @@ registerLocaleData(localePt, 'pt-BR');
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     ConfirmationService,
     ErrorHandlerService,
-    CategoriaService
+    CategoriaService,
+    Title
   ]
 })
 export class CoreModule { }

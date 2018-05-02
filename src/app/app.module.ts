@@ -1,3 +1,5 @@
+import { AppRoutingModule } from './app-routing.module';
+import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
 import { PessoasCadastroComponent } from './pessoas/pessoas-cadastro/pessoas-cadastro.component';
 import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
 import { LancamentosCadastroComponent } from './lancamentos/lancamentos-cadastro/lancamentos-cadastro.component';
@@ -16,15 +18,6 @@ import { CoreModule } from './core/core.module';
 import { HttpModule } from '@angular/http';
 import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa/lancamentos-pesquisa.component';
 
-const routes: Routes = [
-  { path: 'lancamentos', component: LancamentosPesquisaComponent},
-  { path: 'lancamentos/novo', component: LancamentosCadastroComponent},
-  { path: 'lancamentos/:codigo', component: LancamentosCadastroComponent},
-  { path: 'pessoas', component: PessoasPesquisaComponent},
-  { path: 'pessoas/nova', component: PessoasCadastroComponent},
-  { path: 'pessoas/:codigo', component: PessoasCadastroComponent}
-];
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +28,7 @@ const routes: Routes = [
     PessoasModule,
     CoreModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

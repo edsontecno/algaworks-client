@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Pessoa } from './../../core/model';
 import { ErrorHandlerService } from './../../core/error-handler.service';
@@ -18,7 +19,8 @@ export class PessoasCadastroComponent implements OnInit {
   constructor(private pessoaService: PessoasService,
     private toasty: ToastyService,
     private errorHandler: ErrorHandlerService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private title: Title
     ) { }
 
   ngOnInit() {
@@ -26,6 +28,9 @@ export class PessoasCadastroComponent implements OnInit {
 
     if (codigo) {
       this.carregarPessoa(codigo);
+      this.title.setTitle('Editar pessoas');
+    } else {
+      this.title.setTitle('Cadastrar pessoas');
     }
   }
 
