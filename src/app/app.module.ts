@@ -17,6 +17,7 @@ import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { CoreModule } from './core/core.module';
 import { HttpModule } from '@angular/http';
 import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa/lancamentos-pesquisa.component';
+import { SegurancaModule } from './seguranca/seguranca.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa
     PessoasModule,
     CoreModule,
     HttpModule,
+    SegurancaModule,
     AppRoutingModule
   ],
   providers: [],

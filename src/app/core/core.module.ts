@@ -1,3 +1,4 @@
+import { AuthService } from './../seguranca/auth.service';
 import { CategoriaService } from './../categorias/categoria.service';
 import { PessoasPesquisaComponent } from './../pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
 import { PessoasService } from './../pessoas/pessoas.service';
@@ -49,6 +50,7 @@ registerLocaleData(localePt, 'pt-BR');
     ConfirmationService,
     ErrorHandlerService,
     CategoriaService,
+    AuthService,
     Title
   ]
 })

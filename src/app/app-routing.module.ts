@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
 import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
 import { LancamentosCadastroComponent } from './lancamentos/lancamentos-cadastro/lancamentos-cadastro.component';
+import { LoginFormComponent } from './seguranca/login-form/login-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'pessoas', component: PessoasPesquisaComponent},
   { path: 'pessoas/nova', component: PessoasCadastroComponent},
   { path: 'pessoas/:codigo', component: PessoasCadastroComponent},
+  { path: 'login', component: LoginFormComponent},
   { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
   { path: '**', redirectTo: 'pagina-nao-encontrada' }
 ];
