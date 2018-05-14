@@ -1,3 +1,4 @@
+import { AuthService } from './../../seguranca/auth.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { LancamentosPesquisaComponent } from './../lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoFiltro, LancamentoService } from './../lancamento.service';
@@ -21,6 +22,7 @@ export class LancamentosGridComponent {
         private service: LancamentoService,
         private toasty: ToastyService,
         private confirmation: ConfirmationService,
+        private auth: AuthService,
         private errorHandle: ErrorHandlerService) {
 
 

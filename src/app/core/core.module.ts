@@ -1,3 +1,5 @@
+import { NaoAutorizadoComponent } from './nao-autorizado.component';
+import { JwtHelper } from 'angular2-jwt';
 import { AuthService } from './../seguranca/auth.service';
 import { CategoriaService } from './../categorias/categoria.service';
 import { PessoasPesquisaComponent } from './../pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
@@ -35,7 +37,8 @@ registerLocaleData(localePt, 'pt-BR');
   ],
   declarations: [
       NavbarComponent,
-      PaginaNaoEncontradaComponent
+      PaginaNaoEncontradaComponent,
+      NaoAutorizadoComponent
   ],
   exports: [
       NavbarComponent,
@@ -51,6 +54,7 @@ registerLocaleData(localePt, 'pt-BR');
     ErrorHandlerService,
     CategoriaService,
     AuthService,
+    JwtHelper,
     Title
   ]
 })

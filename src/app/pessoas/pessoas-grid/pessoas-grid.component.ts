@@ -1,3 +1,4 @@
+import { AuthService } from './../../seguranca/auth.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/api';
@@ -28,6 +29,7 @@ export class PessoasGridComponent {
         private service: PessoasService,
         private toasty: ToastyService,
         private errorHandle: ErrorHandlerService,
+        private auth: AuthService,
         private confirmation: ConfirmationService) {}
 
     aoMudarPagina(event: LazyLoadEvent) {
